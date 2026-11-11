@@ -1,0 +1,1689 @@
+{
+  "_comment": "Fictitious data replacing the mcp_servers / mcp_tools / mcp_user_connections tables. Generic public MCP servers, no real data. Regenerate with: python scripts/build_mock_data.py",
+  "mcp_servers": [
+    {
+      "key": "github",
+      "label": "GitHub",
+      "description": "Code repositories, issues, pull requests, branches and commits.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    },
+    {
+      "key": "slack",
+      "label": "Slack",
+      "description": "Team messaging: channels, messages, reactions, status.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    },
+    {
+      "key": "gmail",
+      "label": "Gmail",
+      "description": "Mailbox: sending, search, drafts, labels.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    },
+    {
+      "key": "google_calendar",
+      "label": "Google Calendar",
+      "description": "Calendar: events, meetings, availability, invitations.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    },
+    {
+      "key": "notion",
+      "label": "Notion",
+      "description": "Wiki and notes: pages, databases, blocks.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    },
+    {
+      "key": "stripe",
+      "label": "Stripe",
+      "description": "Payments: customers, invoices, subscriptions, refunds.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    },
+    {
+      "key": "jira",
+      "label": "Jira",
+      "description": "Agile project management: tickets, sprints, comments.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    },
+    {
+      "key": "openweather",
+      "label": "Weather",
+      "description": "Current weather, forecasts and air quality.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    },
+    {
+      "key": "google_drive",
+      "label": "Google Drive",
+      "description": "File storage: search, folders, sharing.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    }
+  ],
+  "mcp_tools": [
+    {
+      "mcp_key": "github",
+      "tool_name": "list_repositories",
+      "description": "List the code repositories the user can access.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "owner": {
+            "type": "string"
+          },
+          "visibility": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "owner"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "github",
+      "tool_name": "create_issue",
+      "description": "Create an issue (bug report or feature request) in a GitHub repository.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "repo": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "labels": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "github",
+      "tool_name": "list_issues",
+      "description": "List open or closed issues of a repository, filtered by label or assignee.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "repo": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "labels": {
+            "type": "string"
+          },
+          "assignee": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "github",
+      "tool_name": "close_issue",
+      "description": "Close an issue in a repository.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "repo": {
+            "type": "string"
+          },
+          "issue_number": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "github",
+      "tool_name": "create_pull_request",
+      "description": "Open a pull request to merge one branch into another.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "repo": {
+            "type": "string"
+          },
+          "head": {
+            "type": "string"
+          },
+          "base": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "github",
+      "tool_name": "list_pull_requests",
+      "description": "List the pull requests of a repository and their review status.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "repo": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "github",
+      "tool_name": "merge_pull_request",
+      "description": "Merge an approved pull request.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "repo": {
+            "type": "string"
+          },
+          "pull_number": {
+            "type": "string"
+          },
+          "merge_method": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "github",
+      "tool_name": "get_file_contents",
+      "description": "Read the contents of a source code file in a repository.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "repo": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "ref": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "github",
+      "tool_name": "search_code",
+      "description": "Search source code by keyword across repositories.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "repo": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "github",
+      "tool_name": "list_commits",
+      "description": "List the commit history of a branch.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "repo": {
+            "type": "string"
+          },
+          "branch": {
+            "type": "string"
+          },
+          "since": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "github",
+      "tool_name": "create_branch",
+      "description": "Create a new git branch from an existing branch.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "repo": {
+            "type": "string"
+          },
+          "branch": {
+            "type": "string"
+          },
+          "from_branch": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "repo"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "slack",
+      "tool_name": "send_message",
+      "description": "Send a message to a Slack channel or a direct message to a teammate.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "channel"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "slack",
+      "tool_name": "list_channels",
+      "description": "List the Slack channels of the workspace.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "include_private": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "include_private"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "slack",
+      "tool_name": "create_channel",
+      "description": "Create a new Slack channel.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "is_private": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "slack",
+      "tool_name": "get_channel_history",
+      "description": "Fetch the latest messages posted in a Slack channel.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "channel"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "slack",
+      "tool_name": "search_messages",
+      "description": "Search Slack messages by keyword, author or date.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "from_user": {
+            "type": "string"
+          },
+          "after": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "slack",
+      "tool_name": "add_reaction",
+      "description": "Add an emoji reaction to a Slack message.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          },
+          "emoji": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "channel"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "slack",
+      "tool_name": "invite_user_to_channel",
+      "description": "Invite a team member to a Slack channel.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string"
+          },
+          "user": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "channel"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "slack",
+      "tool_name": "set_status",
+      "description": "Update the user's Slack status (away, in a meeting, on vacation).",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "emoji": {
+            "type": "string"
+          },
+          "expiration": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "slack",
+      "tool_name": "upload_file",
+      "description": "Share a file in a Slack channel.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string"
+          },
+          "file_url": {
+            "type": "string"
+          },
+          "comment": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "channel"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "gmail",
+      "tool_name": "send_email",
+      "description": "Send an email to one or more recipients.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "to": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "cc": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "to"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "gmail",
+      "tool_name": "search_emails",
+      "description": "Search emails by sender, subject, date or content.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "max_results": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "gmail",
+      "tool_name": "read_email",
+      "description": "Read the full content of a received email.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "message_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message_id"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "gmail",
+      "tool_name": "create_draft",
+      "description": "Prepare an email draft without sending it.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "to": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "to"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "gmail",
+      "tool_name": "reply_to_email",
+      "description": "Reply to a received email.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "message_id": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "gmail",
+      "tool_name": "list_labels",
+      "description": "List the labels (folders) of the mailbox.",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "gmail",
+      "tool_name": "add_label",
+      "description": "Apply a label to an email to file it.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "message_id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "gmail",
+      "tool_name": "archive_email",
+      "description": "Archive an email to remove it from the inbox.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "message_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "gmail",
+      "tool_name": "delete_email",
+      "description": "Delete an email (move it to trash).",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "message_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "google_calendar",
+      "tool_name": "list_events",
+      "description": "List the calendar events and meetings over a period.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "calendar_id": {
+            "type": "string"
+          },
+          "time_min": {
+            "type": "string"
+          },
+          "time_max": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "calendar_id"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "google_calendar",
+      "tool_name": "create_event",
+      "description": "Create an event or schedule a meeting in the calendar, with attendees.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "start": {
+            "type": "string"
+          },
+          "end": {
+            "type": "string"
+          },
+          "attendees": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "google_calendar",
+      "tool_name": "update_event",
+      "description": "Change an existing event (time, location, attendees).",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "event_id": {
+            "type": "string"
+          },
+          "start": {
+            "type": "string"
+          },
+          "end": {
+            "type": "string"
+          },
+          "attendees": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "event_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "google_calendar",
+      "tool_name": "delete_event",
+      "description": "Cancel and delete a calendar event.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "event_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "event_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "google_calendar",
+      "tool_name": "find_free_slots",
+      "description": "Find common free time slots to organize a meeting.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "attendees": {
+            "type": "string"
+          },
+          "duration_minutes": {
+            "type": "string"
+          },
+          "time_min": {
+            "type": "string"
+          },
+          "time_max": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "attendees"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "google_calendar",
+      "tool_name": "list_calendars",
+      "description": "List the calendars the user can access.",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "google_calendar",
+      "tool_name": "respond_to_invitation",
+      "description": "Accept or decline a meeting invitation.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "event_id": {
+            "type": "string"
+          },
+          "response": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "event_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "notion",
+      "tool_name": "search_pages",
+      "description": "Search pages and notes in the Notion workspace.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "notion",
+      "tool_name": "get_page",
+      "description": "Read the content of a Notion page.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "page_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "page_id"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "notion",
+      "tool_name": "create_page",
+      "description": "Create a new notes or documentation page in Notion.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "parent_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "parent_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "notion",
+      "tool_name": "update_page",
+      "description": "Change the title or properties of a Notion page.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "page_id": {
+            "type": "string"
+          },
+          "properties": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "page_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "notion",
+      "tool_name": "append_block",
+      "description": "Append text, a list or a checkbox at the end of a Notion page.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "page_id": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "page_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "notion",
+      "tool_name": "create_database",
+      "description": "Create a Notion database (table) with its columns.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "parent_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "properties": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "parent_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "notion",
+      "tool_name": "query_database",
+      "description": "Query a Notion database with filters and sorts.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "database_id": {
+            "type": "string"
+          },
+          "filter": {
+            "type": "string"
+          },
+          "sorts": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "database_id"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "notion",
+      "tool_name": "add_database_entry",
+      "description": "Add a row to a Notion database.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "database_id": {
+            "type": "string"
+          },
+          "properties": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "database_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "notion",
+      "tool_name": "delete_page",
+      "description": "Archive (delete) a Notion page.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "page_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "page_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "stripe",
+      "tool_name": "create_customer",
+      "description": "Create a customer in Stripe for billing.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "stripe",
+      "tool_name": "list_customers",
+      "description": "List the customers registered in Stripe.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "stripe",
+      "tool_name": "create_invoice",
+      "description": "Create an invoice for a customer.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "type": "string"
+          },
+          "items": {
+            "type": "string"
+          },
+          "due_date": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "customer_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "stripe",
+      "tool_name": "list_invoices",
+      "description": "List invoices, filtered by status (paid, unpaid, overdue).",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "customer_id"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "stripe",
+      "tool_name": "send_invoice",
+      "description": "Email an invoice to the customer for payment.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "invoice_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "invoice_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "stripe",
+      "tool_name": "create_payment_link",
+      "description": "Generate an online payment link for a product or an amount.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "amount"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "stripe",
+      "tool_name": "list_payments",
+      "description": "List received payments and their status.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "type": "string"
+          },
+          "created_after": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "customer_id"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "stripe",
+      "tool_name": "refund_payment",
+      "description": "Refund a payment fully or partially.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "payment_id": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "payment_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "stripe",
+      "tool_name": "get_balance",
+      "description": "Show the available and pending balance of the Stripe account.",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "stripe",
+      "tool_name": "create_subscription",
+      "description": "Subscribe a customer to a monthly or yearly recurring plan.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "type": "string"
+          },
+          "price_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "customer_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "stripe",
+      "tool_name": "cancel_subscription",
+      "description": "Cancel a customer's subscription.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "subscription_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "subscription_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "jira",
+      "tool_name": "create_ticket",
+      "description": "Create a ticket (task, story or bug) in a Jira project.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "project": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "issue_type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "project"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "jira",
+      "tool_name": "get_ticket",
+      "description": "Show the details of a Jira ticket.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ticket_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ticket_key"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "jira",
+      "tool_name": "list_tickets",
+      "description": "List the Jira tickets of a project or an assignee, filtered by status.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "project": {
+            "type": "string"
+          },
+          "assignee": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "project"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "jira",
+      "tool_name": "update_ticket_status",
+      "description": "Change the status of a Jira ticket (to do, in progress, done).",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ticket_key": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ticket_key"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "jira",
+      "tool_name": "assign_ticket",
+      "description": "Assign a Jira ticket to a team member.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ticket_key": {
+            "type": "string"
+          },
+          "assignee": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ticket_key"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "jira",
+      "tool_name": "add_comment",
+      "description": "Add a comment to a Jira ticket.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ticket_key": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ticket_key"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "jira",
+      "tool_name": "list_sprints",
+      "description": "List the sprints of a Jira board and their progress.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "board_id": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "board_id"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "jira",
+      "tool_name": "create_sprint",
+      "description": "Create a new sprint on a Jira board.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "board_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "start_date": {
+            "type": "string"
+          },
+          "end_date": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "board_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "openweather",
+      "tool_name": "get_current_weather",
+      "description": "Get the current weather (temperature, rain, wind) for a city.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string"
+          },
+          "units": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "city"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "openweather",
+      "tool_name": "get_forecast",
+      "description": "Get the weather forecast for the next days for a city.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string"
+          },
+          "days": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "city"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "openweather",
+      "tool_name": "get_air_quality",
+      "description": "Get the air quality index and pollution level of a city.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "city"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "google_drive",
+      "tool_name": "search_files",
+      "description": "Search files and documents in Google Drive.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "mime_type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "google_drive",
+      "tool_name": "upload_file",
+      "description": "Upload a file to a Google Drive folder.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "content_url": {
+            "type": "string"
+          },
+          "folder_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "google_drive",
+      "tool_name": "download_file",
+      "description": "Download the content of a Google Drive file.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "file_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "file_id"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "google_drive",
+      "tool_name": "create_folder",
+      "description": "Create a folder in Google Drive.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "parent_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "google_drive",
+      "tool_name": "share_file",
+      "description": "Share a Drive file or folder with someone (view or edit access).",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "file_id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "file_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "google_drive",
+      "tool_name": "delete_file",
+      "description": "Delete a file from Google Drive.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "file_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "file_id"
+        ]
+      },
+      "is_destructive": true
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Developer (GitHub, Jira, Slack)"
+    },
+    {
+      "id": 2,
+      "name": "Sales rep (Stripe, Gmail, Calendar)"
+    },
+    {
+      "id": 3,
+      "name": "Admin (all MCP servers)"
+    },
+    {
+      "id": 4,
+      "name": "New user (no MCP connected)"
+    },
+    {
+      "id": 5,
+      "name": "Writer (Notion; Drive in error, Weather disconnected)"
+    }
+  ],
+  "mcp_user_connections": [
+    {
+      "user_id": 1,
+      "mcp_key": "github",
+      "status": "connected"
+    },
+    {
+      "user_id": 1,
+      "mcp_key": "jira",
+      "status": "connected"
+    },
+    {
+      "user_id": 1,
+      "mcp_key": "slack",
+      "status": "connected"
+    },
+    {
+      "user_id": 2,
+      "mcp_key": "stripe",
+      "status": "connected"
+    },
+    {
+      "user_id": 2,
+      "mcp_key": "gmail",
+      "status": "connected"
+    },
+    {
+      "user_id": 2,
+      "mcp_key": "google_calendar",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "github",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "slack",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "gmail",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "google_calendar",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "notion",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "stripe",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "jira",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "openweather",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "google_drive",
+      "status": "connected"
+    },
+    {
+      "user_id": 5,
+      "mcp_key": "notion",
+      "status": "connected"
+    },
+    {
+      "user_id": 5,
+      "mcp_key": "google_drive",
+      "status": "error"
+    },
+    {
+      "user_id": 5,
+      "mcp_key": "openweather",
+      "status": "disconnected"
+    }
+  ]
+}
