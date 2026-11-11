@@ -1,0 +1,81 @@
+### Real test requests (VS Code "REST Client" extension or JetBrains HTTP Client)
+### Start the server first: uvicorn app.main:app --reload
+@base = http://127.0.0.1:8000/orchestrator
+
+### Service and index status
+GET {{base}}/health
+
+### Available MCP servers
+GET {{base}}/mcps
+
+### Fictitious users and their connected MCP servers
+GET {{base}}/users
+
+### 1. Billing -> stripe (user 3 is connected to everything)
+POST {{base}}/route
+Content-Type: application/json
+
+{"query": "list the unpaid invoices", "user_id": 3}
+
+### 2. Meeting -> google_calendar
+POST {{base}}/route
+Content-Type: application/json
+
+{"query": "schedule a meeting with Sophie on Thursday at 2pm", "user_id": 3}
+
+### 3. Code -> github
+POST {{base}}/route
+Content-Type: application/json
+
+{"query": "merge PR 42 in the frontend repo", "user_id": 3}
+
+### 4. Ticket -> jira
+POST {{base}}/route
+Content-Type: application/json
+
+{"query": "create a Jira ticket to redesign the home page", "user_id": 3}
+
+### 5. Weather -> openweather
+POST {{base}}/route
+Content-Type: application/json
+
+{"query": "what's the weather like in Lyon?", "user_id": 3}
+
+### 6. MCP not connected: user 4 has nothing -> mcp_not_connected, suggests slack
+POST {{base}}/route
+Content-Type: application/json
+
+{"query": "send a Slack message to the team about the meeting", "user_id": 4}
+
+### 7. Drive in error for user 5 -> suggests google_drive
+POST {{base}}/route
+Content-Type: application/json
+
+{"query": "share the report.pdf file from the Drive with Paul", "user_id": 5}
+
+### 8. Knowledge question -> direct_answer
+POST {{base}}/route
+Content-Type: application/json
+
+{"query": "what is a pull request?", "user_id": 3}
+
+### 9. Out of domain -> direct_answer expected
+POST {{base}}/route
+Content-Type: application/json
+
+{"query": "write me a poem about autumn", "user_id": 3}
+
+### 10. Explicit scope (no user_id): only gmail and notion allowed
+POST {{base}}/route
+Content-Type: application/json
+
+{"query": "email paul@example.com to confirm the appointment", "allowed_mcps": ["gmail", "notion"], "top_k": 3}
+
+### 11. Raw scores without thresholds (to understand a decision)
+POST {{base}}/route/explain
+Content-Type: application/json
+
+{"query": "find a one-hour slot with Marc and Lea", "user_id": 3}
+
+### 12. Re-index after editing app/data/mock_data.json
+POST {{base}}/index/rebuild
