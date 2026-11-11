@@ -1,0 +1,12 @@
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.6
+pydantic-settings>=2.2
+numpy>=1.26
+faiss-cpu>=1.8
+sentence-transformers>=3.0
+# Optionnel : EMBEDDING_PROVIDER=openai
+openai>=1.30
+# Tests
+pytest>=8.0
+httpx>=0.27
