@@ -1,0 +1,85 @@
+{
+  "_comment": "Labeled evaluation set. expected_mcp and expected_tools accept several answers when the request is ambiguous. category: in_domain | not_connected | knowledge | out_of_domain.",
+  "queries": [
+    {"category": "in_domain", "user_id": 3, "query": "show me the pull requests waiting for review on the api repo", "expected_status": "tools_found", "expected_mcp": ["github"], "expected_tools": ["github__list_pull_requests"]},
+    {"category": "in_domain", "user_id": 3, "query": "merge PR 42 in the frontend repo", "expected_status": "tools_found", "expected_mcp": ["github"], "expected_tools": ["github__merge_pull_request"]},
+    {"category": "in_domain", "user_id": 3, "query": "what are the latest commits on the main branch?", "expected_status": "tools_found", "expected_mcp": ["github"], "expected_tools": ["github__list_commits"]},
+    {"category": "in_domain", "user_id": 3, "query": "create a feature/login branch from develop", "expected_status": "tools_found", "expected_mcp": ["github"], "expected_tools": ["github__create_branch"]},
+    {"category": "in_domain", "user_id": 3, "query": "find where the parse_date function is used in the code", "expected_status": "tools_found", "expected_mcp": ["github"], "expected_tools": ["github__search_code"]},
+    {"category": "in_domain", "user_id": 3, "query": "close issue 128 in the backend repository", "expected_status": "tools_found", "expected_mcp": ["github"], "expected_tools": ["github__close_issue"]},
+    {"category": "in_domain", "user_id": 3, "query": "report a bug on GitHub: the login page crashes", "expected_status": "tools_found", "expected_mcp": ["github"], "expected_tools": ["github__create_issue"]},
+
+    {"category": "in_domain", "user_id": 3, "query": "post in #general that the production release is done", "expected_status": "tools_found", "expected_mcp": ["slack"], "expected_tools": ["slack__send_message"]},
+    {"category": "in_domain", "user_id": 3, "query": "let the team know on Slack that I'll be late", "expected_status": "tools_found", "expected_mcp": ["slack"], "expected_tools": ["slack__send_message"]},
+    {"category": "in_domain", "user_id": 3, "query": "what was discussed in the #support channel today?", "expected_status": "tools_found", "expected_mcp": ["slack"], "expected_tools": ["slack__get_channel_history", "slack__search_messages"]},
+    {"category": "in_domain", "user_id": 3, "query": "set my Slack status to on vacation until Monday", "expected_status": "tools_found", "expected_mcp": ["slack"], "expected_tools": ["slack__set_status"]},
+    {"category": "in_domain", "user_id": 3, "query": "create a private channel for the Atlas project", "expected_status": "tools_found", "expected_mcp": ["slack"], "expected_tools": ["slack__create_channel"]},
+    {"category": "in_domain", "user_id": 3, "query": "add Marie to the #design channel", "expected_status": "tools_found", "expected_mcp": ["slack"], "expected_tools": ["slack__invite_user_to_channel"]},
+
+    {"category": "in_domain", "user_id": 3, "query": "email paul@example.com to confirm the appointment", "expected_status": "tools_found", "expected_mcp": ["gmail"], "expected_tools": ["gmail__send_email"]},
+    {"category": "in_domain", "user_id": 3, "query": "find the emails from the bank received this week", "expected_status": "tools_found", "expected_mcp": ["gmail"], "expected_tools": ["gmail__search_emails"]},
+    {"category": "in_domain", "user_id": 3, "query": "draft an email to thank the supplier", "expected_status": "tools_found", "expected_mcp": ["gmail"], "expected_tools": ["gmail__create_draft"]},
+    {"category": "in_domain", "user_id": 3, "query": "archive all the newsletter emails", "expected_status": "tools_found", "expected_mcp": ["gmail"], "expected_tools": ["gmail__archive_email"]},
+    {"category": "in_domain", "user_id": 3, "query": "reply to Julie's email saying it's fine", "expected_status": "tools_found", "expected_mcp": ["gmail"], "expected_tools": ["gmail__reply_to_email"]},
+
+    {"category": "in_domain", "user_id": 3, "query": "schedule a meeting with Sophie on Thursday at 2pm", "expected_status": "tools_found", "expected_mcp": ["google_calendar"], "expected_tools": ["google_calendar__create_event"]},
+    {"category": "in_domain", "user_id": 3, "query": "what's on my calendar tomorrow?", "expected_status": "tools_found", "expected_mcp": ["google_calendar"], "expected_tools": ["google_calendar__list_events"]},
+    {"category": "in_domain", "user_id": 3, "query": "find a one-hour slot next week with Marc and Lea", "expected_status": "tools_found", "expected_mcp": ["google_calendar"], "expected_tools": ["google_calendar__find_free_slots"]},
+    {"category": "in_domain", "user_id": 3, "query": "move my 10am meeting to 11am", "expected_status": "tools_found", "expected_mcp": ["google_calendar"], "expected_tools": ["google_calendar__update_event"]},
+    {"category": "in_domain", "user_id": 3, "query": "cancel Friday's appointment", "expected_status": "tools_found", "expected_mcp": ["google_calendar"], "expected_tools": ["google_calendar__delete_event"]},
+    {"category": "in_domain", "user_id": 3, "query": "accept the invitation to the steering committee", "expected_status": "tools_found", "expected_mcp": ["google_calendar"], "expected_tools": ["google_calendar__respond_to_invitation"]},
+
+    {"category": "in_domain", "user_id": 3, "query": "create a Notion page with the meeting minutes", "expected_status": "tools_found", "expected_mcp": ["notion"], "expected_tools": ["notion__create_page"]},
+    {"category": "in_domain", "user_id": 3, "query": "add a row to my Notion reading list for the book Dune", "expected_status": "tools_found", "expected_mcp": ["notion"], "expected_tools": ["notion__add_database_entry"]},
+    {"category": "in_domain", "user_id": 3, "query": "find my notes about the 2027 strategy", "expected_status": "tools_found", "expected_mcp": ["notion", "google_drive"], "expected_tools": ["notion__search_pages", "google_drive__search_files"]},
+    {"category": "in_domain", "user_id": 3, "query": "add a checkbox 'review the contract' to my task page", "expected_status": "tools_found", "expected_mcp": ["notion"], "expected_tools": ["notion__append_block"]},
+
+    {"category": "in_domain", "user_id": 3, "query": "list the unpaid invoices", "expected_status": "tools_found", "expected_mcp": ["stripe"], "expected_tools": ["stripe__list_invoices"]},
+    {"category": "in_domain", "user_id": 3, "query": "refund the $49 payment from customer Dupont", "expected_status": "tools_found", "expected_mcp": ["stripe"], "expected_tools": ["stripe__refund_payment"]},
+    {"category": "in_domain", "user_id": 3, "query": "generate a $120 payment link for the training course", "expected_status": "tools_found", "expected_mcp": ["stripe"], "expected_tools": ["stripe__create_payment_link"]},
+    {"category": "in_domain", "user_id": 3, "query": "how much money do I have on my Stripe account?", "expected_status": "tools_found", "expected_mcp": ["stripe"], "expected_tools": ["stripe__get_balance"]},
+    {"category": "in_domain", "user_id": 3, "query": "subscribe the customer Acme to the yearly plan", "expected_status": "tools_found", "expected_mcp": ["stripe"], "expected_tools": ["stripe__create_subscription"]},
+    {"category": "in_domain", "user_id": 3, "query": "cancel Martin's subscription", "expected_status": "tools_found", "expected_mcp": ["stripe"], "expected_tools": ["stripe__cancel_subscription"]},
+    {"category": "in_domain", "user_id": 3, "query": "send invoice INV-2031 to the customer so they can pay it", "expected_status": "tools_found", "expected_mcp": ["stripe"], "expected_tools": ["stripe__send_invoice"]},
+
+    {"category": "in_domain", "user_id": 3, "query": "create a Jira ticket to redesign the home page", "expected_status": "tools_found", "expected_mcp": ["jira"], "expected_tools": ["jira__create_ticket"]},
+    {"category": "in_domain", "user_id": 3, "query": "move ticket PROJ-12 to done", "expected_status": "tools_found", "expected_mcp": ["jira"], "expected_tools": ["jira__update_ticket_status"]},
+    {"category": "in_domain", "user_id": 3, "query": "assign PROJ-45 to Karim", "expected_status": "tools_found", "expected_mcp": ["jira"], "expected_tools": ["jira__assign_ticket"]},
+    {"category": "in_domain", "user_id": 3, "query": "which tickets are assigned to me?", "expected_status": "tools_found", "expected_mcp": ["jira"], "expected_tools": ["jira__list_tickets"]},
+    {"category": "in_domain", "user_id": 3, "query": "comment on ticket PROJ-7: blocked waiting for the client", "expected_status": "tools_found", "expected_mcp": ["jira"], "expected_tools": ["jira__add_comment"]},
+    {"category": "in_domain", "user_id": 3, "query": "how is the current sprint going?", "expected_status": "tools_found", "expected_mcp": ["jira"], "expected_tools": ["jira__list_sprints"]},
+
+    {"category": "in_domain", "user_id": 3, "query": "what's the weather like in Lyon?", "expected_status": "tools_found", "expected_mcp": ["openweather"], "expected_tools": ["openweather__get_current_weather"]},
+    {"category": "in_domain", "user_id": 3, "query": "is it going to rain this weekend in Bordeaux?", "expected_status": "tools_found", "expected_mcp": ["openweather"], "expected_tools": ["openweather__get_forecast"]},
+    {"category": "in_domain", "user_id": 3, "query": "is pollution high in Paris today?", "expected_status": "tools_found", "expected_mcp": ["openweather"], "expected_tools": ["openweather__get_air_quality"]},
+
+    {"category": "in_domain", "user_id": 3, "query": "share the Budget folder with claire@example.com as read-only", "expected_status": "tools_found", "expected_mcp": ["google_drive"], "expected_tools": ["google_drive__share_file"]},
+    {"category": "in_domain", "user_id": 3, "query": "create an Invoices 2026 folder in my Drive", "expected_status": "tools_found", "expected_mcp": ["google_drive"], "expected_tools": ["google_drive__create_folder"]},
+    {"category": "in_domain", "user_id": 3, "query": "find the client presentation in the Drive", "expected_status": "tools_found", "expected_mcp": ["google_drive"], "expected_tools": ["google_drive__search_files"]},
+    {"category": "in_domain", "user_id": 3, "query": "delete the file draft_v1.docx from the Drive", "expected_status": "tools_found", "expected_mcp": ["google_drive"], "expected_tools": ["google_drive__delete_file"]},
+
+    {"category": "not_connected", "user_id": 1, "query": "list my customers' unpaid invoices", "expected_status": "mcp_not_connected", "expected_mcp": ["stripe"]},
+    {"category": "not_connected", "user_id": 1, "query": "what will the weather be in Marseille tomorrow?", "expected_status": "mcp_not_connected", "expected_mcp": ["openweather"]},
+    {"category": "not_connected", "user_id": 2, "query": "create a Jira ticket for the payment bug", "expected_status": "mcp_not_connected", "expected_mcp": ["jira"]},
+    {"category": "not_connected", "user_id": 4, "query": "send a Slack message to the team about the meeting", "expected_status": "mcp_not_connected", "expected_mcp": ["slack"]},
+    {"category": "not_connected", "user_id": 4, "query": "schedule a meeting on Monday at 9am with the client", "expected_status": "mcp_not_connected", "expected_mcp": ["google_calendar"]},
+    {"category": "not_connected", "user_id": 5, "query": "share the report.pdf file from the Drive with Paul", "expected_status": "mcp_not_connected", "expected_mcp": ["google_drive"]},
+    {"category": "not_connected", "user_id": 5, "query": "what's the weather in Nice?", "expected_status": "mcp_not_connected", "expected_mcp": ["openweather"]},
+    {"category": "not_connected", "user_id": 1, "query": "send an email to the accounting department", "expected_status": "mcp_not_connected", "expected_mcp": ["gmail"]},
+
+    {"category": "knowledge", "user_id": 3, "query": "what is a pull request?", "expected_status": "direct_answer"},
+    {"category": "knowledge", "user_id": 3, "query": "what is a sprint in agile?", "expected_status": "direct_answer"},
+    {"category": "knowledge", "user_id": 3, "query": "what is Stripe used for?", "expected_status": "direct_answer"},
+    {"category": "knowledge", "user_id": 3, "query": "explain the difference between merge and rebase", "expected_status": "direct_answer"},
+    {"category": "knowledge", "user_id": 3, "query": "how does a recurring subscription work?", "expected_status": "direct_answer"},
+
+    {"category": "out_of_domain", "user_id": 3, "query": "what is the capital of Italy?", "expected_status": "direct_answer"},
+    {"category": "out_of_domain", "user_id": 3, "query": "write me a poem about autumn", "expected_status": "direct_answer"},
+    {"category": "out_of_domain", "user_id": 3, "query": "translate 'good morning' into Spanish", "expected_status": "direct_answer"},
+    {"category": "out_of_domain", "user_id": 3, "query": "how much is 17 times 23?", "expected_status": "direct_answer"},
+    {"category": "out_of_domain", "user_id": 3, "query": "give me a pancake recipe", "expected_status": "direct_answer"},
+    {"category": "out_of_domain", "user_id": 3, "query": "tell me a joke", "expected_status": "direct_answer"},
+    {"category": "out_of_domain", "user_id": 3, "query": "summarize the theory of relativity", "expected_status": "direct_answer"},
+    {"category": "out_of_domain", "user_id": 3, "query": "thanks a lot!", "expected_status": "direct_answer"}
+  ]
+}
