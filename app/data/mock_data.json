@@ -5,6 +5,9 @@
       "key": "github",
       "label": "GitHub",
       "description": "Code repositories, issues, pull requests, branches and commits.",
+      "aliases": [
+        "github"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -12,6 +15,9 @@
       "key": "slack",
       "label": "Slack",
       "description": "Team messaging: channels, messages, reactions, status.",
+      "aliases": [
+        "slack"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -19,6 +25,9 @@
       "key": "gmail",
       "label": "Gmail",
       "description": "Mailbox: sending, search, drafts, labels.",
+      "aliases": [
+        "gmail"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -26,6 +35,9 @@
       "key": "google_calendar",
       "label": "Google Calendar",
       "description": "Calendar: events, meetings, availability, invitations.",
+      "aliases": [
+        "google calendar"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -33,6 +45,9 @@
       "key": "notion",
       "label": "Notion",
       "description": "Wiki and notes: pages, databases, blocks.",
+      "aliases": [
+        "notion"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -40,6 +55,9 @@
       "key": "stripe",
       "label": "Stripe",
       "description": "Payments: customers, invoices, subscriptions, refunds.",
+      "aliases": [
+        "stripe"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -47,6 +65,9 @@
       "key": "jira",
       "label": "Jira",
       "description": "Agile project management: tickets, sprints, comments.",
+      "aliases": [
+        "jira"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -54,6 +75,9 @@
       "key": "openweather",
       "label": "Weather",
       "description": "Current weather, forecasts and air quality.",
+      "aliases": [
+        "openweather"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -61,6 +85,12 @@
       "key": "google_drive",
       "label": "Google Drive",
       "description": "File storage: search, folders, sharing.",
+      "aliases": [
+        "google drive",
+        "the drive",
+        "my drive",
+        "shared drive"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -68,6 +98,9 @@
       "key": "hubspot",
       "label": "HubSpot",
       "description": "CRM: contacts, companies, deals, calls, follow-ups.",
+      "aliases": [
+        "hubspot"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -75,6 +108,9 @@
       "key": "zendesk",
       "label": "Zendesk",
       "description": "Customer support: tickets, replies, satisfaction, macros.",
+      "aliases": [
+        "zendesk"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -82,6 +118,9 @@
       "key": "shopify",
       "label": "Shopify",
       "description": "Online store: products, orders, inventory, discounts, customers.",
+      "aliases": [
+        "shopify"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -89,6 +128,9 @@
       "key": "quickbooks",
       "label": "QuickBooks",
       "description": "Accounting: invoices, bills, expenses, reports, tax.",
+      "aliases": [
+        "quickbooks"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -96,6 +138,9 @@
       "key": "asana",
       "label": "Asana",
       "description": "Team work management: projects, tasks, sections, workload.",
+      "aliases": [
+        "asana"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -103,6 +148,9 @@
       "key": "google_sheets",
       "label": "Google Sheets",
       "description": "Spreadsheets: read, write, append rows, formulas.",
+      "aliases": [
+        "google sheets"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -110,6 +158,9 @@
       "key": "zoom",
       "label": "Zoom",
       "description": "Video meetings: schedule, recordings, transcripts, webinars.",
+      "aliases": [
+        "zoom"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -117,6 +168,9 @@
       "key": "mailchimp",
       "label": "Mailchimp",
       "description": "Email marketing: audiences, campaigns, newsletters, reports.",
+      "aliases": [
+        "mailchimp"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -124,6 +178,9 @@
       "key": "twilio",
       "label": "Twilio",
       "description": "Phone and SMS: text messages, calls, phone numbers.",
+      "aliases": [
+        "twilio"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -131,6 +188,9 @@
       "key": "dropbox",
       "label": "Dropbox",
       "description": "File storage and sharing: files, folders, shared links.",
+      "aliases": [
+        "dropbox"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -138,6 +198,9 @@
       "key": "docusign",
       "label": "DocuSign",
       "description": "Electronic signatures: envelopes, templates, signing status.",
+      "aliases": [
+        "docusign"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -145,6 +208,9 @@
       "key": "google_maps",
       "label": "Google Maps",
       "description": "Places, directions, travel time, geocoding.",
+      "aliases": [
+        "google maps"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     },
@@ -152,6 +218,9 @@
       "key": "trello",
       "label": "Trello",
       "description": "Kanban boards: boards, lists, cards, checklists.",
+      "aliases": [
+        "trello"
+      ],
       "naming_convention": "explicit_typed",
       "is_native": false
     }

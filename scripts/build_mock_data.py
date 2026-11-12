@@ -280,6 +280,14 @@ EXTRA_SERVERS = {
     ]),
 }
 
+# Product names that explicitly designate a server in a message. Default: the lowercase label.
+# Only product names, never generic nouns ("weather", "calendar", "drive" alone would also match
+# "drive from Lyon to Grenoble"): a mention restricts routing to the server.
+ALIASES = {
+    "openweather": ["openweather"],
+    "google_drive": ["google drive", "the drive", "my drive", "shared drive"],
+}
+
 EXTRA_USERS = [{"id": 6, "name": "Support lead (Zendesk, Shopify, Twilio, Mailchimp)"}]
 
 EXTRA_CONNECTED = {
@@ -303,7 +311,16 @@ def build(core_only: bool = False) -> dict:
 
     servers, tools = [], []
     for key, (label, desc, tool_list) in catalog.items():
-        servers.append({"key": key, "label": label, "description": desc, "naming_convention": "explicit_typed", "is_native": False})
+        servers.append(
+            {
+                "key": key,
+                "label": label,
+                "description": desc,
+                "aliases": ALIASES.get(key, [label.lower()]),
+                "naming_convention": "explicit_typed",
+                "is_native": False,
+            }
+        )
         for name, tool_desc, params, destructive in tool_list:
             tools.append(
                 {
