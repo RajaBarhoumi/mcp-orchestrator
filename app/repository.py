@@ -22,6 +22,8 @@ class McpServer:
     description: str = ""
     naming_convention: str = "unknown"
     is_native: bool = False
+    # Product names that explicitly designate this server in a message ("notion", "google drive").
+    aliases: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -67,6 +69,8 @@ class MockRepository:
                 description=s.get("description", ""),
                 naming_convention=s.get("naming_convention", "unknown"),
                 is_native=bool(s.get("is_native", False)),
+                # Default alias: the product label ("Google Drive" -> "google drive").
+                aliases=tuple(a.lower() for a in s.get("aliases") or [s.get("label", s["key"])]),
             )
             for s in self._ensure_loaded().get("mcp_servers", [])
         ]

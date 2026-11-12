@@ -33,5 +33,19 @@ class Settings(BaseSettings):
     # "what is X", "why can't you" -> forces direct_answer.
     KNOWLEDGE_GUARD_ENABLED: bool = True
 
+    # Routing improvements (each can be switched off; scripts/ablation.py measures them).
+    # Prefix every embedded tool text with its server name ("Zendesk. get ticket ...").
+    # OFF by default: measured with this embedding model, it does not help (light version) or hurts
+    # (with the domain description), see reports/ablation.md. Kept to re-test with other models.
+    SERVER_CONTEXT_IN_TOOL_TEXT: bool = False
+    # Also add the server's domain description ("Zendesk. Customer support: tickets, ... get ticket").
+    SERVER_CONTEXT_INCLUDE_DOMAIN: bool = True
+    # A server named in the message ("in Notion", "on Slack", "#general") restricts routing to it.
+    EXPLICIT_MENTION_ENABLED: bool = True
+    # Tool threshold inside an explicitly named server (the mention is evidence in itself).
+    THRESHOLD_TOOL_MENTIONED: float = 0.20
+    # Keyword (BM25) boost added to the semantic score of a tool; 0 disables keyword search.
+    LEXICAL_WEIGHT: float = 0.15
+
 
 settings = Settings()
