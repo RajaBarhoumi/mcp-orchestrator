@@ -17,6 +17,7 @@ import numpy as np
 
 from app import embedding
 from app.config import settings
+from app.lexical import BM25Index, lexical_boost
 
 _MANIFEST_FILENAME = "manifest.json"
 
@@ -44,6 +45,15 @@ class VectorStore:
     def __init__(self, index_dir: str | Path | None = None):
         self._index_dir = Path(index_dir) if index_dir is not None else Path(settings.ORCH_INDEX_DIR)
         self._entries: dict[str, _McpEntry] = {}
+        self._lexical: BM25Index | None = None  # keyword index over all tools, rebuilt lazily
+
+    def lexical_scores(self, query: str) -> dict[str, float]:
+        """Keyword boost in [0, 1) for every tool sharing words with `query` (BM25, all servers)."""
+        if self._lexical is None:
+            self._lexical = BM25Index(
+                {m["namespaced_name"]: m.get("text") or m["description"] for e in self._entries.values() for m in e.metadatas}
+            )
+        return {name: lexical_boost(raw) for name, raw in self._lexical.scores(query).items()}
 
     def replace_mcp(self, mcp_key: str, vectors: np.ndarray, metadatas: list[dict], catalog_hash: str) -> None:
         """Atomically replace the state of ONE MCP (never append to the old index)."""
@@ -66,10 +76,12 @@ class VectorStore:
             centroid=_compute_centroid(vectors, dim),
             catalog_hash=catalog_hash,
         )
+        self._lexical = None
 
     def remove_mcp(self, mcp_key: str) -> bool:
         """Purge an MCP from memory and disk. Idempotent: returns False if absent."""
         removed = self._entries.pop(mcp_key, None) is not None
+        self._lexical = None
         mcp_dir = self._index_dir / mcp_key
         if mcp_dir.is_dir():
             shutil.rmtree(mcp_dir, ignore_errors=True)
@@ -139,6 +151,7 @@ class VectorStore:
     def load(self) -> None:
         """Reload from disk; skip indexes built with a different embedding model."""
         self._entries = {}
+        self._lexical = None
         if not self._index_dir.exists():
             return
         active_model = embedding.get_active_model_name()
