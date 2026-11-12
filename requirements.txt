@@ -5,8 +5,10 @@ pydantic-settings>=2.2
 numpy>=1.26
 faiss-cpu>=1.8
 sentence-transformers>=3.0
-# Optionnel : EMBEDDING_PROVIDER=openai
+# Optional: EMBEDDING_PROVIDER=openai
 openai>=1.30
+# Evaluation: token counts of tool definitions
+tiktoken>=0.7
 # Tests
 pytest>=8.0
 httpx>=0.27
