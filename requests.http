@@ -59,12 +59,24 @@ Content-Type: application/json
 
 {"query": "send a Slack message to the team about the meeting", "user_id": 4}
 
-### 7. Drive in error for user 5 -> suggests google_drive, but also proposes a Google Sheets tool
-###    (a known false lead of the 200-tool catalog, see the README)
+### 7. Drive in error for user 5: "the Drive" is named -> mcp_not_connected, suggests google_drive
+###    (before explicit mentions, a Google Sheets tool was proposed as a false lead)
 POST {{base}}/route
 Content-Type: application/json
 
 {"query": "share the report.pdf file from the Drive with Paul", "user_id": 5}
+
+### 7b. Explicit mention: "Notion" restricts routing to Notion (see mentioned_mcps in the response)
+POST {{base}}/route
+Content-Type: application/json
+
+{"query": "add a row to my Notion reading list for the book Dune", "user_id": 3}
+
+### 7c. Product convention: "ticket PROJ-12" designates Jira, "#general" designates Slack
+POST {{base}}/route
+Content-Type: application/json
+
+{"query": "move ticket PROJ-12 to done", "user_id": 3}
 
 ### 8. Knowledge question -> direct_answer
 POST {{base}}/route
@@ -84,7 +96,7 @@ Content-Type: application/json
 
 {"query": "email paul@example.com to confirm the appointment", "allowed_mcps": ["gmail", "notion"], "top_k": 3}
 
-### 11. Raw scores without thresholds (to understand a decision)
+### 11. Raw scores without thresholds (to understand a decision): semantic and keyword parts per tool
 POST {{base}}/route/explain
 Content-Type: application/json
 
