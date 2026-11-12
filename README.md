@@ -65,21 +65,31 @@ All data is **fictitious**: generic public MCP servers, no real data. Regenerate
 meetings in Calendar and Zoom; tickets in Jira and Zendesk): that is what makes routing hard as a
 catalog grows.
 
-| Server | Tools | Server | Tools |
+| Server | Domain | Tools | Wave |
 |---|---|---|---|
-| `github` | 11 | `hubspot` (CRM) | 14 |
-| `slack` | 9 | `zendesk` (support) | 12 |
-| `gmail` | 9 | `shopify` (store) | 14 |
-| `google_calendar` | 7 | `quickbooks` (accounting) | 12 |
-| `notion` | 9 | `asana` | 10 |
-| `stripe` | 11 | `google_sheets` | 10 |
-| `jira` | 8 | `zoom` | 8 |
-| `openweather` | 3 | `mailchimp` | 10 |
-| `google_drive` | 6 | `twilio` (SMS, calls) | 6 |
-| | | `dropbox` | 8 |
-| | | `docusign` | 7 |
-| | | `google_maps` | 6 |
-| | | `trello` | 10 |
+| `github` | Code: repositories, issues, pull requests, branches, commits | 11 | core |
+| `slack` | Team messaging: channels, messages, reactions, status | 9 | core |
+| `gmail` | Email: send, search, drafts, replies, labels | 9 | core |
+| `google_calendar` | Calendar: events, free slots, invitations | 7 | core |
+| `notion` | Notes and wiki: pages, blocks, databases | 9 | core |
+| `stripe` | Payments: customers, invoices, refunds, subscriptions | 11 | core |
+| `jira` | Agile projects: tickets, statuses, sprints | 8 | core |
+| `openweather` | Weather: current, forecast, air quality | 3 | core |
+| `google_drive` | File storage: search, folders, sharing | 6 | core |
+| `hubspot` | CRM: contacts, deals, calls, follow-ups | 14 | extra |
+| `zendesk` | Customer support: tickets, replies, macros, satisfaction | 12 | extra |
+| `shopify` | Online store: products, orders, inventory, discounts | 14 | extra |
+| `quickbooks` | Accounting: invoices, bills, expenses, reports, tax | 12 | extra |
+| `asana` | Work management: projects, tasks, workload | 10 | extra |
+| `google_sheets` | Spreadsheets: read, write, append, charts | 10 | extra |
+| `zoom` | Video meetings: schedule, recordings, transcripts | 8 | extra |
+| `mailchimp` | Email marketing: audiences, campaigns, reports | 10 | extra |
+| `twilio` | Phone: SMS, calls, numbers | 6 | extra |
+| `dropbox` | File storage: files, folders, shared links | 8 | extra |
+| `docusign` | E-signature: envelopes, templates, status | 7 | extra |
+| `google_maps` | Places, directions, travel time | 6 | extra |
+| `trello` | Kanban boards: boards, cards, checklists | 10 | extra |
+| **Total** | | **200** | 73 core + 127 extra |
 
 `python scripts/build_mock_data.py --core-only --out <file>` rebuilds the original 9-server
 catalog (73 tools), used to measure the effect of the catalog size.
