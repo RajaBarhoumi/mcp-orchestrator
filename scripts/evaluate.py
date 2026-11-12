@@ -31,7 +31,7 @@ from app import embedding  # noqa: E402
 from app.config import settings  # noqa: E402
 from app.indexer import reindex_all  # noqa: E402
 from app.repository import MockRepository, repository  # noqa: E402
-from app.router_service import DEFAULT_TOP_K, decide, is_knowledge_query, route  # noqa: E402
+from app.router_service import DEFAULT_TOP_K, candidates, decide, is_knowledge_query, route  # noqa: E402
 from app.store import VectorStore, store  # noqa: E402
 from scripts.build_mock_data import build  # noqa: E402
 
@@ -82,18 +82,18 @@ def raw_rank(vs: VectorStore, qvec, expected_tools: list[str]) -> int | None:
 
 def evaluate(queries: list[dict], repo: MockRepository, vs: VectorStore, verbose: bool) -> tuple[dict, list[dict], list[dict]]:
     rows, cache, latencies = [], [], []
-    route("warm-up", [], vector_store=vs)  # first call loads the model, excluded from latencies
+    route("warm-up", [], vector_store=vs, repo=repo)  # first call loads the model, excluded from latencies
 
     for q in queries:
         allowed = repo.get_allowed_mcps(q["user_id"])
         t0 = time.perf_counter()
-        result = route(q["query"], allowed, vector_store=vs)
+        result = route(q["query"], allowed, vector_store=vs, repo=repo)
         latencies.append((time.perf_counter() - t0) * 1000)
 
+        # Same inputs as route() (semantic + keyword scores, mentions), kept for the threshold sweep.
         qvec = embedding.embed(q["query"])
-        centroid_scores = vs.search_centroids(qvec)
-        hits = {k: vs.search_tools(qvec, k, k=DEFAULT_TOP_K) for k, _ in centroid_scores}
-        cache.append({"q": q, "allowed": set(allowed), "centroids": centroid_scores, "hits": hits})
+        centroid_scores, hits, mentioned = candidates(q["query"], DEFAULT_TOP_K, vs, repo)
+        cache.append({"q": q, "allowed": set(allowed), "centroids": centroid_scores, "hits": hits, "mentioned": mentioned})
 
         names = [t["namespaced_name"] for t in result["tools"]]
         expected_tools = q.get("expected_tools", [])
@@ -179,6 +179,8 @@ def sweep(cache: list[dict]) -> list[dict]:
                 knowledge_query=settings.KNOWLEDGE_GUARD_ENABLED and is_knowledge_query(q["query"]),
                 threshold_suggest=max(th, settings.THRESHOLD_SUGGEST),
                 max_suggested=settings.MAX_SUGGESTED_MCPS,
+                mentioned=c["mentioned"],
+                threshold_tool_mentioned=settings.THRESHOLD_TOOL_MENTIONED,
             )
             ok += res["status"] == q["expected_status"]
             if q["category"] == "in_domain":
