@@ -1,5 +1,5 @@
 {
-  "_comment": "Labeled evaluation set. expected_mcp and expected_tools accept several answers when the request is ambiguous. category: in_domain | not_connected | knowledge | out_of_domain. set: core (written for the original 9-server catalog, used to compare catalog sizes) | extended (added with the 200-tool catalog).",
+  "_comment": "Labeled evaluation set. expected_mcp and expected_tools accept several answers when the request is ambiguous. category: in_domain | not_connected | knowledge | out_of_domain. set: core (written for the original 9-server catalog, used to compare catalog sizes) | extended (added with the 200-tool catalog) | fresh (held out: written before the routing improvements, never used to tune them).",
   "queries": [
     {"category": "in_domain", "user_id": 3, "query": "show me the pull requests waiting for review on the api repo", "expected_status": "tools_found", "expected_mcp": ["github"], "expected_tools": ["github__list_pull_requests"], "set": "core"},
     {"category": "in_domain", "user_id": 3, "query": "merge PR 42 in the frontend repo", "expected_status": "tools_found", "expected_mcp": ["github"], "expected_tools": ["github__merge_pull_request"], "set": "core"},
@@ -122,6 +122,31 @@
     {"category": "knowledge", "set": "extended", "user_id": 3, "query": "explain what an electronic signature is", "expected_status": "direct_answer"},
     {"category": "out_of_domain", "set": "extended", "user_id": 3, "query": "what's a good name for a cat?", "expected_status": "direct_answer"},
     {"category": "out_of_domain", "set": "extended", "user_id": 3, "query": "who won the football World Cup in 2018?", "expected_status": "direct_answer"},
-    {"category": "out_of_domain", "set": "extended", "user_id": 3, "query": "recommend a good book about leadership", "expected_status": "direct_answer"}
+    {"category": "out_of_domain", "set": "extended", "user_id": 3, "query": "recommend a good book about leadership", "expected_status": "direct_answer"},
+    {"category": "in_domain", "set": "fresh", "user_id": 3, "query": "ping the #backend channel that the API is down", "expected_status": "tools_found", "expected_mcp": ["slack"], "expected_tools": ["slack__send_message"]},
+    {"category": "in_domain", "set": "fresh", "user_id": 3, "query": "what's on the Trello board for the website relaunch?", "expected_status": "tools_found", "expected_mcp": ["trello"], "expected_tools": ["trello__list_cards", "trello__list_boards"]},
+    {"category": "in_domain", "set": "fresh", "user_id": 3, "query": "upload the signed contract to Dropbox", "expected_status": "tools_found", "expected_mcp": ["dropbox"], "expected_tools": ["dropbox__upload_file"]},
+    {"category": "in_domain", "set": "fresh", "user_id": 3, "query": "did Initech open the contract I sent them on DocuSign?", "expected_status": "tools_found", "expected_mcp": ["docusign"], "expected_tools": ["docusign__get_envelope_status", "docusign__list_envelopes"]},
+    {"category": "in_domain", "set": "fresh", "user_id": 3, "query": "what are my biggest open deals in HubSpot?", "expected_status": "tools_found", "expected_mcp": ["hubspot"], "expected_tools": ["hubspot__list_deals"]},
+    {"category": "in_domain", "set": "fresh", "user_id": 3, "query": "send a Zendesk reply telling Mia her replacement has shipped", "expected_status": "tools_found", "expected_mcp": ["zendesk"], "expected_tools": ["zendesk__reply_to_ticket"]},
+    {"category": "in_domain", "set": "fresh", "user_id": 3, "query": "how much revenue did the shop make yesterday?", "expected_status": "tools_found", "expected_mcp": ["shopify"], "expected_tools": ["shopify__get_sales_report"]},
+    {"category": "in_domain", "set": "fresh", "user_id": 3, "query": "put a 30-minute Google Calendar slot on Friday for my 1:1 with Tom", "expected_status": "tools_found", "expected_mcp": ["google_calendar"], "expected_tools": ["google_calendar__create_event"]},
+    {"category": "in_domain", "set": "fresh", "user_id": 3, "query": "open the Q4 budget sheet and read the totals row", "expected_status": "tools_found", "expected_mcp": ["google_sheets"], "expected_tools": ["google_sheets__read_range", "google_sheets__search_rows"]},
+    {"category": "in_domain", "set": "fresh", "user_id": 3, "query": "set up a Zoom webinar for the product launch next Tuesday", "expected_status": "tools_found", "expected_mcp": ["zoom"], "expected_tools": ["zoom__create_webinar"]},
+    {"category": "in_domain", "set": "fresh", "user_id": 3, "query": "unsubscribe paul@example.com from our marketing emails", "expected_status": "tools_found", "expected_mcp": ["mailchimp"], "expected_tools": ["mailchimp__unsubscribe_member"]},
+    {"category": "in_domain", "set": "fresh", "user_id": 3, "query": "which GitHub issues are labeled bug?", "expected_status": "tools_found", "expected_mcp": ["github"], "expected_tools": ["github__list_issues"]},
+    {"category": "in_domain", "set": "fresh", "user_id": 3, "query": "what does the PROJ-88 story say?", "expected_status": "tools_found", "expected_mcp": ["jira"], "expected_tools": ["jira__get_ticket"]},
+    {"category": "in_domain", "set": "fresh", "user_id": 3, "query": "how far is the Lyon office from the train station on foot?", "expected_status": "tools_found", "expected_mcp": ["google_maps"], "expected_tools": ["google_maps__get_directions", "google_maps__get_travel_time"]},
+    {"category": "in_domain", "set": "fresh", "user_id": 3, "query": "bill Acme $2,000 for the October consulting work", "expected_status": "tools_found", "expected_mcp": ["quickbooks", "stripe"], "expected_tools": ["stripe__create_invoice", "quickbooks__create_invoice"]},
+    {"category": "in_domain", "set": "fresh", "user_id": 3, "query": "save these meeting notes in Notion", "expected_status": "tools_found", "expected_mcp": ["notion"], "expected_tools": ["notion__create_page", "notion__append_block"]},
+    {"category": "in_domain", "set": "fresh", "user_id": 3, "query": "how much did we spend on software subscriptions this year?", "expected_status": "tools_found", "expected_mcp": ["quickbooks"], "expected_tools": ["quickbooks__list_expenses", "quickbooks__get_profit_and_loss"]},
+    {"category": "in_domain", "set": "fresh", "user_id": 3, "query": "send a text reminder to the client about tomorrow's visit", "expected_status": "tools_found", "expected_mcp": ["twilio"], "expected_tools": ["twilio__send_sms"]},
+    {"category": "in_domain", "set": "fresh", "user_id": 3, "query": "which Asana projects does the marketing team have?", "expected_status": "tools_found", "expected_mcp": ["asana"], "expected_tools": ["asana__list_projects"]},
+    {"category": "not_connected", "set": "fresh", "user_id": 6, "query": "create a Jira ticket for the checkout bug", "expected_status": "mcp_not_connected", "expected_mcp": ["jira"]},
+    {"category": "not_connected", "set": "fresh", "user_id": 1, "query": "send the April newsletter with Mailchimp", "expected_status": "mcp_not_connected", "expected_mcp": ["mailchimp"]},
+    {"category": "not_connected", "set": "fresh", "user_id": 4, "query": "upload the logo to Dropbox", "expected_status": "mcp_not_connected", "expected_mcp": ["dropbox"]},
+    {"category": "knowledge", "set": "fresh", "user_id": 3, "query": "what's the difference between Asana and Trello?", "expected_status": "direct_answer"},
+    {"category": "out_of_domain", "set": "fresh", "user_id": 3, "query": "how long should a good newsletter subject line be?", "expected_status": "direct_answer"},
+    {"category": "out_of_domain", "set": "fresh", "user_id": 3, "query": "who founded Shopify?", "expected_status": "direct_answer"}
   ]
 }
