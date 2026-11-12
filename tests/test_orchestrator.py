@@ -87,10 +87,10 @@ def test_knowledge_guard():
 
 
 def test_mock_data_allowed_mcps():
-    assert repository.get_allowed_mcps(1) == ["github", "jira", "slack"]
+    assert repository.get_allowed_mcps(1) == ["github", "jira", "slack", "trello"]
     assert repository.get_allowed_mcps(4) == []
     # google_drive in "error" and openweather "disconnected" are not allowed.
-    assert repository.get_allowed_mcps(5) == ["notion"]
+    assert repository.get_allowed_mcps(5) == ["google_sheets", "notion"]
 
 
 def test_no_tool_name_exceeds_openai_limit():
@@ -120,4 +120,10 @@ def test_route_endpoint(fake_embeddings):
     assert "best_mcp" in body
 
     assert client.get("/orchestrator/health").json()["status"] == "ok"
-    assert len(client.get("/orchestrator/mcps").json()) == 9
+    assert len(client.get("/orchestrator/mcps").json()) == 22
+
+
+def test_catalog_has_200_unique_tools():
+    tools = repository.list_tools()
+    names = {f"{t.mcp_key}__{t.tool_name}" for t in tools}
+    assert len(tools) == len(names) == 200

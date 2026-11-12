@@ -63,6 +63,97 @@
       "description": "File storage: search, folders, sharing.",
       "naming_convention": "explicit_typed",
       "is_native": false
+    },
+    {
+      "key": "hubspot",
+      "label": "HubSpot",
+      "description": "CRM: contacts, companies, deals, calls, follow-ups.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    },
+    {
+      "key": "zendesk",
+      "label": "Zendesk",
+      "description": "Customer support: tickets, replies, satisfaction, macros.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    },
+    {
+      "key": "shopify",
+      "label": "Shopify",
+      "description": "Online store: products, orders, inventory, discounts, customers.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    },
+    {
+      "key": "quickbooks",
+      "label": "QuickBooks",
+      "description": "Accounting: invoices, bills, expenses, reports, tax.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    },
+    {
+      "key": "asana",
+      "label": "Asana",
+      "description": "Team work management: projects, tasks, sections, workload.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    },
+    {
+      "key": "google_sheets",
+      "label": "Google Sheets",
+      "description": "Spreadsheets: read, write, append rows, formulas.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    },
+    {
+      "key": "zoom",
+      "label": "Zoom",
+      "description": "Video meetings: schedule, recordings, transcripts, webinars.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    },
+    {
+      "key": "mailchimp",
+      "label": "Mailchimp",
+      "description": "Email marketing: audiences, campaigns, newsletters, reports.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    },
+    {
+      "key": "twilio",
+      "label": "Twilio",
+      "description": "Phone and SMS: text messages, calls, phone numbers.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    },
+    {
+      "key": "dropbox",
+      "label": "Dropbox",
+      "description": "File storage and sharing: files, folders, shared links.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    },
+    {
+      "key": "docusign",
+      "label": "DocuSign",
+      "description": "Electronic signatures: envelopes, templates, signing status.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    },
+    {
+      "key": "google_maps",
+      "label": "Google Maps",
+      "description": "Places, directions, travel time, geocoding.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
+    },
+    {
+      "key": "trello",
+      "label": "Trello",
+      "description": "Kanban boards: boards, lists, cards, checklists.",
+      "naming_convention": "explicit_typed",
+      "is_native": false
     }
   ],
   "mcp_tools": [
@@ -80,9 +171,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "owner"
-        ]
+        "required": []
       },
       "is_destructive": false
     },
@@ -132,9 +221,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "repo"
-        ]
+        "required": []
       },
       "is_destructive": false
     },
@@ -201,9 +288,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "repo"
-        ]
+        "required": []
       },
       "is_destructive": false
     },
@@ -290,9 +375,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "repo"
-        ]
+        "required": []
       },
       "is_destructive": false
     },
@@ -350,9 +433,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "include_private"
-        ]
+        "required": []
       },
       "is_destructive": false
     },
@@ -696,9 +777,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "calendar_id"
-        ]
+        "required": []
       },
       "is_destructive": false
     },
@@ -1045,9 +1124,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "email"
-        ]
+        "required": []
       },
       "is_destructive": false
     },
@@ -1088,9 +1165,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "customer_id"
-        ]
+        "required": []
       },
       "is_destructive": false
     },
@@ -1148,9 +1223,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "customer_id"
-        ]
+        "required": []
       },
       "is_destructive": false
     },
@@ -1282,9 +1355,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "project"
-        ]
+        "required": []
       },
       "is_destructive": false
     },
@@ -1362,9 +1433,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "board_id"
-        ]
+        "required": []
       },
       "is_destructive": false
     },
@@ -1570,6 +1639,2487 @@
         ]
       },
       "is_destructive": true
+    },
+    {
+      "mcp_key": "hubspot",
+      "tool_name": "list_contacts",
+      "description": "List CRM contacts, filtered by owner, company or lifecycle stage.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "owner": {
+            "type": "string"
+          },
+          "company": {
+            "type": "string"
+          },
+          "stage": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "hubspot",
+      "tool_name": "get_contact",
+      "description": "Show a contact's details and activity timeline.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "contact_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "contact_id"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "hubspot",
+      "tool_name": "create_contact",
+      "description": "Add a new contact (lead) to the CRM.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "company": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "hubspot",
+      "tool_name": "update_contact",
+      "description": "Update a contact's properties (phone, stage, owner).",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "contact_id": {
+            "type": "string"
+          },
+          "properties": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "contact_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "hubspot",
+      "tool_name": "list_companies",
+      "description": "List the companies (accounts) in the CRM.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "industry": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "hubspot",
+      "tool_name": "list_deals",
+      "description": "List sales deals in the pipeline, filtered by stage or owner.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "stage": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "closing_before": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "hubspot",
+      "tool_name": "create_deal",
+      "description": "Create a new sales deal (opportunity) for a contact or company.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "stage": {
+            "type": "string"
+          },
+          "contact_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "hubspot",
+      "tool_name": "update_deal_stage",
+      "description": "Move a deal to another pipeline stage (qualified, proposal, won, lost).",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "deal_id": {
+            "type": "string"
+          },
+          "stage": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "deal_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "hubspot",
+      "tool_name": "log_call",
+      "description": "Log a phone call with a contact and its outcome.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "contact_id": {
+            "type": "string"
+          },
+          "outcome": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "contact_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "hubspot",
+      "tool_name": "list_calls",
+      "description": "List logged sales calls and their outcomes over a period.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "owner": {
+            "type": "string"
+          },
+          "since": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "hubspot",
+      "tool_name": "list_overdue_follow_ups",
+      "description": "List contacts whose follow-up call or email is overdue (people not called back).",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "owner": {
+            "type": "string"
+          },
+          "since": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "hubspot",
+      "tool_name": "create_task",
+      "description": "Create a sales follow-up task (call back, send a proposal) for a contact.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "contact_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "due_date": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "contact_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "hubspot",
+      "tool_name": "add_note",
+      "description": "Add a note to a contact or deal record.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "record_id": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "record_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "hubspot",
+      "tool_name": "get_pipeline_report",
+      "description": "Show the sales pipeline value and conversion rate by stage.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "period": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "period"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "zendesk",
+      "tool_name": "list_tickets",
+      "description": "List customer support tickets, filtered by status, priority or assignee.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "string"
+          },
+          "assignee": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "zendesk",
+      "tool_name": "get_ticket",
+      "description": "Show a support ticket with its conversation.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ticket_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ticket_id"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "zendesk",
+      "tool_name": "create_ticket",
+      "description": "Open a support ticket for a customer request or complaint.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "requester_email": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "requester_email"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "zendesk",
+      "tool_name": "reply_to_ticket",
+      "description": "Send a public reply to the customer on a support ticket.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ticket_id": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ticket_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "zendesk",
+      "tool_name": "add_internal_note",
+      "description": "Add a private note on a support ticket, visible only to agents.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ticket_id": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ticket_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "zendesk",
+      "tool_name": "update_ticket_status",
+      "description": "Change a support ticket status (open, pending, solved).",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ticket_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ticket_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "zendesk",
+      "tool_name": "assign_ticket",
+      "description": "Assign a support ticket to an agent or group.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ticket_id": {
+            "type": "string"
+          },
+          "assignee": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ticket_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "zendesk",
+      "tool_name": "merge_tickets",
+      "description": "Merge duplicate support tickets into one.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "source_ticket_id": {
+            "type": "string"
+          },
+          "target_ticket_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "source_ticket_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "zendesk",
+      "tool_name": "search_tickets",
+      "description": "Search support tickets by keyword or customer.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "zendesk",
+      "tool_name": "list_macros",
+      "description": "List canned reply templates (macros) for support agents.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "zendesk",
+      "tool_name": "apply_macro",
+      "description": "Apply a canned reply template to a support ticket.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ticket_id": {
+            "type": "string"
+          },
+          "macro_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ticket_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "zendesk",
+      "tool_name": "get_satisfaction_scores",
+      "description": "Show customer satisfaction (CSAT) scores over a period.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "period": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "period"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "shopify",
+      "tool_name": "list_products",
+      "description": "List the products of the online store.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "collection": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "shopify",
+      "tool_name": "get_product",
+      "description": "Show a product's details, variants and price.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "product_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "product_id"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "shopify",
+      "tool_name": "create_product",
+      "description": "Add a new product to the online store.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "images": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "shopify",
+      "tool_name": "update_product_price",
+      "description": "Change the price of a product or variant.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "product_id": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "product_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "shopify",
+      "tool_name": "update_inventory",
+      "description": "Set the stock quantity of a product variant.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "variant_id": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "variant_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "shopify",
+      "tool_name": "list_orders",
+      "description": "List customer orders of the store, filtered by status or date.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "since": {
+            "type": "string"
+          },
+          "customer": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "shopify",
+      "tool_name": "get_order",
+      "description": "Show a store order with items, shipping and payment status.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "order_id"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "shopify",
+      "tool_name": "fulfill_order",
+      "description": "Mark a store order as shipped with a tracking number.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string"
+          },
+          "tracking_number": {
+            "type": "string"
+          },
+          "carrier": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "order_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "shopify",
+      "tool_name": "cancel_order",
+      "description": "Cancel a customer order in the store.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "order_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "shopify",
+      "tool_name": "refund_order",
+      "description": "Refund a store order fully or partially.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "order_id": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "order_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "shopify",
+      "tool_name": "create_discount_code",
+      "description": "Create a discount or promo code for the store.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "percentage": {
+            "type": "string"
+          },
+          "expires_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "shopify",
+      "tool_name": "list_customers",
+      "description": "List the store's customers and their order count.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "since": {
+            "type": "string"
+          },
+          "min_orders": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "shopify",
+      "tool_name": "get_sales_report",
+      "description": "Show store sales, revenue and best-selling products over a period.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "period": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "period"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "shopify",
+      "tool_name": "list_low_stock_products",
+      "description": "List products that are low in stock or sold out.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "threshold": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "quickbooks",
+      "tool_name": "list_invoices",
+      "description": "List accounting invoices, filtered by customer or status (open, overdue, paid).",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "customer": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "quickbooks",
+      "tool_name": "create_invoice",
+      "description": "Create an accounting invoice for a customer.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "customer": {
+            "type": "string"
+          },
+          "lines": {
+            "type": "string"
+          },
+          "due_date": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "customer"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "quickbooks",
+      "tool_name": "record_payment",
+      "description": "Record a customer payment received against an invoice.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "invoice_id": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "invoice_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "quickbooks",
+      "tool_name": "list_bills",
+      "description": "List supplier bills to pay, filtered by vendor or due date.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "vendor": {
+            "type": "string"
+          },
+          "due_before": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "quickbooks",
+      "tool_name": "pay_bill",
+      "description": "Pay a supplier bill from a bank account.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "bill_id": {
+            "type": "string"
+          },
+          "account": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "bill_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "quickbooks",
+      "tool_name": "create_expense",
+      "description": "Record a business expense with its category and receipt.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "vendor": {
+            "type": "string"
+          },
+          "receipt_url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "amount"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "quickbooks",
+      "tool_name": "list_expenses",
+      "description": "List business expenses by category or period.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "since": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "quickbooks",
+      "tool_name": "get_profit_and_loss",
+      "description": "Show the profit and loss statement for a period.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "period": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "period"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "quickbooks",
+      "tool_name": "get_balance_sheet",
+      "description": "Show the balance sheet at a date.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "date"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "quickbooks",
+      "tool_name": "get_cash_flow",
+      "description": "Show the cash flow statement for a period.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "period": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "period"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "quickbooks",
+      "tool_name": "list_vendors",
+      "description": "List suppliers (vendors) and what the company owes them.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "quickbooks",
+      "tool_name": "get_tax_summary",
+      "description": "Show the sales tax (VAT) collected and owed for a period.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "period": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "period"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "asana",
+      "tool_name": "list_projects",
+      "description": "List the team's Asana projects.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "team": {
+            "type": "string"
+          },
+          "archived": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "asana",
+      "tool_name": "create_project",
+      "description": "Create a new Asana project for a team.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "team": {
+            "type": "string"
+          },
+          "template": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "asana",
+      "tool_name": "list_tasks",
+      "description": "List Asana tasks of a project or assignee, filtered by due date.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "project": {
+            "type": "string"
+          },
+          "assignee": {
+            "type": "string"
+          },
+          "due_before": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "asana",
+      "tool_name": "create_task",
+      "description": "Create a task in an Asana project with an assignee and due date.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "project": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "assignee": {
+            "type": "string"
+          },
+          "due_date": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "project"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "asana",
+      "tool_name": "complete_task",
+      "description": "Mark an Asana task as complete.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "task_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "asana",
+      "tool_name": "update_task",
+      "description": "Change an Asana task's assignee, due date or description.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string"
+          },
+          "assignee": {
+            "type": "string"
+          },
+          "due_date": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "task_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "asana",
+      "tool_name": "add_comment",
+      "description": "Comment on an Asana task.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "task_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "asana",
+      "tool_name": "move_task_to_section",
+      "description": "Move an Asana task to another section of the board.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string"
+          },
+          "section": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "task_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "asana",
+      "tool_name": "list_overdue_tasks",
+      "description": "List Asana tasks that are past their due date.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "project": {
+            "type": "string"
+          },
+          "assignee": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "asana",
+      "tool_name": "get_workload",
+      "description": "Show how many tasks each team member has this week.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "team": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "team"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "google_sheets",
+      "tool_name": "list_spreadsheets",
+      "description": "List the spreadsheets the user can access.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "google_sheets",
+      "tool_name": "create_spreadsheet",
+      "description": "Create a new spreadsheet.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "sheets": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "google_sheets",
+      "tool_name": "read_range",
+      "description": "Read the values of a cell range in a spreadsheet.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "spreadsheet_id": {
+            "type": "string"
+          },
+          "range": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "spreadsheet_id"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "google_sheets",
+      "tool_name": "update_range",
+      "description": "Write values into a cell range of a spreadsheet.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "spreadsheet_id": {
+            "type": "string"
+          },
+          "range": {
+            "type": "string"
+          },
+          "values": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "spreadsheet_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "google_sheets",
+      "tool_name": "append_rows",
+      "description": "Append new rows at the end of a spreadsheet table.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "spreadsheet_id": {
+            "type": "string"
+          },
+          "sheet": {
+            "type": "string"
+          },
+          "rows": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "spreadsheet_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "google_sheets",
+      "tool_name": "add_sheet",
+      "description": "Add a new tab (sheet) to a spreadsheet.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "spreadsheet_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "spreadsheet_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "google_sheets",
+      "tool_name": "clear_range",
+      "description": "Erase the values of a cell range.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "spreadsheet_id": {
+            "type": "string"
+          },
+          "range": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "spreadsheet_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "google_sheets",
+      "tool_name": "create_chart",
+      "description": "Create a chart from a range of spreadsheet data.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "spreadsheet_id": {
+            "type": "string"
+          },
+          "range": {
+            "type": "string"
+          },
+          "chart_type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "spreadsheet_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "google_sheets",
+      "tool_name": "search_rows",
+      "description": "Find spreadsheet rows matching a value in a column.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "spreadsheet_id": {
+            "type": "string"
+          },
+          "column": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "spreadsheet_id"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "google_sheets",
+      "tool_name": "share_spreadsheet",
+      "description": "Share a spreadsheet with someone (view or edit).",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "spreadsheet_id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "spreadsheet_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "zoom",
+      "tool_name": "list_meetings",
+      "description": "List upcoming Zoom video meetings.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "from_date": {
+            "type": "string"
+          },
+          "to_date": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "zoom",
+      "tool_name": "create_meeting",
+      "description": "Schedule a Zoom video meeting and get its join link.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string"
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "duration_minutes": {
+            "type": "string"
+          },
+          "invitees": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "topic"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "zoom",
+      "tool_name": "update_meeting",
+      "description": "Change the time or topic of a Zoom meeting.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "meeting_id": {
+            "type": "string"
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "topic": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "meeting_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "zoom",
+      "tool_name": "delete_meeting",
+      "description": "Cancel a Zoom meeting.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "meeting_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "meeting_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "zoom",
+      "tool_name": "list_recordings",
+      "description": "List the cloud recordings of past Zoom meetings.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "from_date": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "zoom",
+      "tool_name": "get_transcript",
+      "description": "Get the transcript of a recorded Zoom meeting.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "meeting_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "meeting_id"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "zoom",
+      "tool_name": "get_meeting_summary",
+      "description": "Get the AI summary and action items of a past Zoom meeting.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "meeting_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "meeting_id"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "zoom",
+      "tool_name": "create_webinar",
+      "description": "Schedule a Zoom webinar with a registration page.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string"
+          },
+          "start_time": {
+            "type": "string"
+          },
+          "duration_minutes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "topic"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "mailchimp",
+      "tool_name": "list_audiences",
+      "description": "List the email marketing audiences (mailing lists).",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "mailchimp",
+      "tool_name": "add_subscriber",
+      "description": "Add a subscriber to an email marketing audience.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "audience_id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "audience_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "mailchimp",
+      "tool_name": "unsubscribe_member",
+      "description": "Unsubscribe someone from a mailing list.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "audience_id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "audience_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "mailchimp",
+      "tool_name": "list_campaigns",
+      "description": "List email marketing campaigns and their status.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "mailchimp",
+      "tool_name": "create_campaign",
+      "description": "Create a newsletter or email marketing campaign draft.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "audience_id": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "audience_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "mailchimp",
+      "tool_name": "send_test_email",
+      "description": "Send a test version of a campaign to an address.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "campaign_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "mailchimp",
+      "tool_name": "schedule_campaign",
+      "description": "Schedule an email marketing campaign for a date and time.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string"
+          },
+          "send_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "campaign_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "mailchimp",
+      "tool_name": "send_campaign",
+      "description": "Send an email marketing campaign to its whole audience now.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "campaign_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "mailchimp",
+      "tool_name": "get_campaign_report",
+      "description": "Show a campaign's open rate, click rate and unsubscribes.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "campaign_id"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "mailchimp",
+      "tool_name": "create_segment",
+      "description": "Create an audience segment from subscriber tags or activity.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "audience_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "conditions": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "audience_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "twilio",
+      "tool_name": "send_sms",
+      "description": "Send an SMS text message to a phone number.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "to": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "to"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "twilio",
+      "tool_name": "list_messages",
+      "description": "List sent and received SMS text messages.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "to": {
+            "type": "string"
+          },
+          "since": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "twilio",
+      "tool_name": "make_call",
+      "description": "Place an automated phone call that plays a message.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "to": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "to"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "twilio",
+      "tool_name": "list_calls",
+      "description": "List incoming and outgoing phone calls and their duration.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "since": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "twilio",
+      "tool_name": "list_phone_numbers",
+      "description": "List the phone numbers owned by the account.",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "twilio",
+      "tool_name": "lookup_phone_number",
+      "description": "Check a phone number's carrier and line type.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "phone_number": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "phone_number"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "dropbox",
+      "tool_name": "search_files",
+      "description": "Search files and folders in Dropbox.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "dropbox",
+      "tool_name": "list_folder",
+      "description": "List the contents of a Dropbox folder.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "dropbox",
+      "tool_name": "upload_file",
+      "description": "Upload a file to Dropbox.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "content_url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "dropbox",
+      "tool_name": "download_file",
+      "description": "Download a file from Dropbox.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "dropbox",
+      "tool_name": "create_folder",
+      "description": "Create a folder in Dropbox.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "dropbox",
+      "tool_name": "create_shared_link",
+      "description": "Create a shareable link to a Dropbox file or folder.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "expires_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "dropbox",
+      "tool_name": "move_file",
+      "description": "Move or rename a file in Dropbox.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "from_path": {
+            "type": "string"
+          },
+          "to_path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "from_path"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "dropbox",
+      "tool_name": "delete_file",
+      "description": "Delete a file or folder from Dropbox.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "docusign",
+      "tool_name": "send_envelope",
+      "description": "Send a document (contract) to be signed electronically.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "document_url": {
+            "type": "string"
+          },
+          "signer_email": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "document_url"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "docusign",
+      "tool_name": "list_envelopes",
+      "description": "List documents sent for signature and their status.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "since": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "docusign",
+      "tool_name": "get_envelope_status",
+      "description": "Check whether a document has been signed, and by whom.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "envelope_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "envelope_id"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "docusign",
+      "tool_name": "void_envelope",
+      "description": "Cancel (void) a document sent for signature.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "envelope_id": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "envelope_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "docusign",
+      "tool_name": "resend_envelope",
+      "description": "Send a signature reminder for a document still unsigned.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "envelope_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "envelope_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "docusign",
+      "tool_name": "list_templates",
+      "description": "List reusable contract templates for signature.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "docusign",
+      "tool_name": "download_signed_document",
+      "description": "Download the completed signed document.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "envelope_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "envelope_id"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "google_maps",
+      "tool_name": "search_places",
+      "description": "Find places (restaurants, shops, offices) near a location.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "radius": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "google_maps",
+      "tool_name": "get_directions",
+      "description": "Get driving, walking or transit directions between two places.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "origin": {
+            "type": "string"
+          },
+          "destination": {
+            "type": "string"
+          },
+          "mode": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "origin"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "google_maps",
+      "tool_name": "get_travel_time",
+      "description": "Estimate the travel time between two addresses.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "origin": {
+            "type": "string"
+          },
+          "destination": {
+            "type": "string"
+          },
+          "departure_time": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "origin"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "google_maps",
+      "tool_name": "geocode_address",
+      "description": "Convert a street address into GPS coordinates.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "address"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "google_maps",
+      "tool_name": "reverse_geocode",
+      "description": "Find the street address of GPS coordinates.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "latitude": {
+            "type": "string"
+          },
+          "longitude": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "latitude"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "google_maps",
+      "tool_name": "get_place_details",
+      "description": "Show a place's opening hours, phone number and rating.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "place_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "place_id"
+        ]
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "trello",
+      "tool_name": "list_boards",
+      "description": "List the user's Trello boards.",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "trello",
+      "tool_name": "create_board",
+      "description": "Create a new Trello board.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "workspace": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "trello",
+      "tool_name": "list_cards",
+      "description": "List the cards of a Trello board or list.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "board": {
+            "type": "string"
+          },
+          "list": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "is_destructive": false
+    },
+    {
+      "mcp_key": "trello",
+      "tool_name": "create_card",
+      "description": "Add a card to a list on a Trello board.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "board": {
+            "type": "string"
+          },
+          "list": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "due_date": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "board"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "trello",
+      "tool_name": "move_card",
+      "description": "Move a Trello card to another list (e.g. from Doing to Done).",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "card_id": {
+            "type": "string"
+          },
+          "list": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "card_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "trello",
+      "tool_name": "update_card",
+      "description": "Change a Trello card's title, description or due date.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "card_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "due_date": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "card_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "trello",
+      "tool_name": "add_checklist",
+      "description": "Add a checklist to a Trello card.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "card_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "items": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "card_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "trello",
+      "tool_name": "add_label",
+      "description": "Add a colored label to a Trello card.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "card_id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "card_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "trello",
+      "tool_name": "assign_member",
+      "description": "Assign a member to a Trello card.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "card_id": {
+            "type": "string"
+          },
+          "member": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "card_id"
+        ]
+      },
+      "is_destructive": true
+    },
+    {
+      "mcp_key": "trello",
+      "tool_name": "archive_card",
+      "description": "Archive a Trello card.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "card_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "card_id"
+        ]
+      },
+      "is_destructive": true
     }
   ],
   "users": [
@@ -1592,6 +4142,10 @@
     {
       "id": 5,
       "name": "Writer (Notion; Drive in error, Weather disconnected)"
+    },
+    {
+      "id": 6,
+      "name": "Support lead (Zendesk, Shopify, Twilio, Mailchimp)"
     }
   ],
   "mcp_user_connections": [
@@ -1611,6 +4165,11 @@
       "status": "connected"
     },
     {
+      "user_id": 1,
+      "mcp_key": "trello",
+      "status": "connected"
+    },
+    {
       "user_id": 2,
       "mcp_key": "stripe",
       "status": "connected"
@@ -1623,6 +4182,26 @@
     {
       "user_id": 2,
       "mcp_key": "google_calendar",
+      "status": "connected"
+    },
+    {
+      "user_id": 2,
+      "mcp_key": "hubspot",
+      "status": "connected"
+    },
+    {
+      "user_id": 2,
+      "mcp_key": "quickbooks",
+      "status": "connected"
+    },
+    {
+      "user_id": 2,
+      "mcp_key": "docusign",
+      "status": "connected"
+    },
+    {
+      "user_id": 2,
+      "mcp_key": "zoom",
       "status": "connected"
     },
     {
@@ -1671,8 +4250,98 @@
       "status": "connected"
     },
     {
+      "user_id": 3,
+      "mcp_key": "hubspot",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "zendesk",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "shopify",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "quickbooks",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "asana",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "google_sheets",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "zoom",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "mailchimp",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "twilio",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "dropbox",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "docusign",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "google_maps",
+      "status": "connected"
+    },
+    {
+      "user_id": 3,
+      "mcp_key": "trello",
+      "status": "connected"
+    },
+    {
       "user_id": 5,
       "mcp_key": "notion",
+      "status": "connected"
+    },
+    {
+      "user_id": 5,
+      "mcp_key": "google_sheets",
+      "status": "connected"
+    },
+    {
+      "user_id": 6,
+      "mcp_key": "zendesk",
+      "status": "connected"
+    },
+    {
+      "user_id": 6,
+      "mcp_key": "shopify",
+      "status": "connected"
+    },
+    {
+      "user_id": 6,
+      "mcp_key": "twilio",
+      "status": "connected"
+    },
+    {
+      "user_id": 6,
+      "mcp_key": "mailchimp",
       "status": "connected"
     },
     {
