@@ -11,13 +11,25 @@ GET {{base}}/mcps
 ### Fictitious users and their connected MCP servers
 GET {{base}}/users
 
-### 1. Billing -> stripe (user 3 is connected to everything)
+### 1. Billing -> stripe first, quickbooks close behind (user 3 is connected to everything)
 POST {{base}}/route
 Content-Type: application/json
 
 {"query": "list the unpaid invoices", "user_id": 3}
 
-### 2. Meeting -> google_calendar
+### 1b. The example of the LinkedIn post: no "CRM" in the question, still routed to hubspot
+POST {{base}}/route
+Content-Type: application/json
+
+{"query": "who did I not call back this week?", "user_id": 3}
+
+### 1c. Same question for user 1, who has no CRM connected -> mcp_not_connected, suggests hubspot
+POST {{base}}/route
+Content-Type: application/json
+
+{"query": "who did I not call back this week?", "user_id": 1}
+
+### 2. Meeting -> google_calendar or zoom (both are valid; the top tool is not always create_*)
 POST {{base}}/route
 Content-Type: application/json
 
@@ -47,7 +59,8 @@ Content-Type: application/json
 
 {"query": "send a Slack message to the team about the meeting", "user_id": 4}
 
-### 7. Drive in error for user 5 -> suggests google_drive
+### 7. Drive in error for user 5 -> suggests google_drive, but also proposes a Google Sheets tool
+###    (a known false lead of the 200-tool catalog, see the README)
 POST {{base}}/route
 Content-Type: application/json
 
